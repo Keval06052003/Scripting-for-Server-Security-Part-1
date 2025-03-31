@@ -1,43 +1,64 @@
-# Scripting-for-Server-Security-Part-1
+# Scripting for Server Security - Part 1
 
-Documentation
-System Requirements
-Bash shell
+## Documentation
 
-Core utilities (grep, awk, find, stat, md5sum)
+### System Requirements
+To run these security scripts, ensure your system meets the following requirements:
 
-lastb command (for failed login attempts)
+- **Bash shell**
+- **Core utilities** (`grep`, `awk`, `find`, `stat`, `md5sum`)
+- **`lastb` command** (for failed login attempts)
+- **`mailutils`** *(optional, for email alerts)*
 
-mailutils (optional, for email alerts)
+---
 
-Assumptions and Justifications
-Concerning login behavior: Midnight-6am logins, root logins, and multiple failures are flagged as these patterns often indicate unauthorized access attempts.
+## Assumptions and Justifications
 
-Critical directories: /etc (configuration files), /var/log (log files that might be altered to hide intrusions), and system binaries directories are monitored as changes here could indicate system compromise.
+### Login Behavior Monitoring
+The script flags the following login patterns, which may indicate unauthorized access attempts:
 
-Hidden files and root executables: These are common targets for attackers to hide backdoors or maintain persistence, so monitoring them is crucial.
+- **Logins between midnight and 6 AM**
+- **Root logins**
+- **Multiple failed login attempts**
 
-Additional Security Scripts Considerations
-Other useful security scripts might include:
+### Critical Directory Monitoring
+These directories are monitored for unauthorized changes:
 
-File integrity monitoring for web directories to detect defacement
+- `/etc` *(configuration files)*
+- `/var/log` *(log files that may be altered to hide intrusions)*
+- System binaries directories *(modifications may indicate system compromise)*
 
-Port scanner to detect unexpected open ports
+### Hidden Files & Root Executables
+Monitoring these is crucial because attackers often hide backdoors or maintain persistence using:
 
-User account monitor to detect unauthorized new accounts
+- **Hidden files**
+- **Root-owned executables**
 
-Cron jobs are ideal for these scripts as they provide regular, automated monitoring without manual intervention. However, care must be taken to:
+---
 
-Not overload the system with frequent scans
+## Additional Security Script Considerations
+Other useful security scripts may include:
 
-Secure the script output files
+- **File integrity monitoring** for web directories to detect defacement
+- **Port scanner** to detect unexpected open ports
+- **User account monitoring** to detect unauthorized new accounts
 
-Rotate log files to prevent disk space issues
+### Best Practices
+When implementing security scripts, keep the following in mind:
 
-Sources:
+- **Use cron jobs** for regular, automated monitoring
+- **Avoid excessive system load** by scheduling scans appropriately
+- **Secure script output files** to prevent unauthorized access
+- **Rotate log files** to prevent disk space issues
 
-Binnie, C. (2016). Linux server security: Hack and defend. Wiley. https://www.kufunda.net/publicdocs/Linux%20Server%20security%20hack%20and%20defend%20(Binnie,%20Chris).pdf  
+---
 
-Bauer, M. D. (2015). Linux server security (2nd ed.). O'Reilly Media.https://www.oreilly.com/library/view/linux-server-security/0596006705/ 
+## Sources
 
-Nemeth, E., Snyder, G., Hein, T. R., & Whaley, B. (2017). UNIX and Linux system administration handbook (5th ed.). Addison-Wesley. https://www.usenix.org/system/files/login/issues/login_fall18_issue.pdf#page=61 
+- Binnie, C. (2016). *Linux Server Security: Hack and Defend.* Wiley. [Read here](https://www.kufunda.net/publicdocs/Linux%20Server%20security%20hack%20and%20defend%20(Binnie,%20Chris).pdf)
+- Bauer, M. D. (2015). *Linux Server Security (2nd ed.).* O'Reilly Media. [Read here](https://www.oreilly.com/library/view/linux-server-security/0596006705/)
+- Nemeth, E., Snyder, G., Hein, T. R., & Whaley, B. (2017). *UNIX and Linux System Administration Handbook (5th ed.).* Addison-Wesley. [Read here](https://www.usenix.org/system/files/login/issues/login_fall18_issue.pdf#page=61)
+
+---
+
+
